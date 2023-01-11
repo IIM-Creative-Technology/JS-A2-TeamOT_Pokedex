@@ -1,0 +1,10 @@
+#target-div{
+    background-color: blue;
+    height: 600px;
+    width: 600px;
+}
+
+section{
+    display: flex;
+    flex-direction: row;
+}
