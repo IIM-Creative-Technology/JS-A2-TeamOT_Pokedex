@@ -1,4 +1,5 @@
 let pokeContain = document.getElementById('pokemon-container')
+let a = 0
 
 
 
@@ -26,15 +27,20 @@ function dragOver(event) {
 }
 
 function drop(event) {
+    a++
+    if(a > 6){
+        alert('Maximum de pokémon atteint')
+    }
     event.preventDefault();
     const id = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(id));
+    console.log(a)
 }
 
 fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 .then((response) => response.json())
 .then((data) => { 
-
+    const target = document.getElementById('target-div')
     var pokemons = data.results;
     for (var i = 0; i < pokemons.length; i++) {
         let pokemonDiv = document.createElement('div')
@@ -63,9 +69,14 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         source.addEventListener("dragend", dragEnd);
     }
 
-
-    const target = document.getElementById('target-div')
     target.addEventListener("dragenter", dragEnter);
     target.addEventListener("dragover", dragOver);
-    target.addEventListener("drop", drop);
+    if (a < 6) {
+        target.addEventListener("drop", drop);
+    }
+    
+
 })
+
+
+
