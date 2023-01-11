@@ -1,0 +1,50 @@
+#cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgb(255, 199, 199);
+  margin: 10px;
+}
+
+.card img {
+  background-color: #fff;
+  border: solid 1px rgb(255, 199, 199);
+}
+
+.card h2{
+    color: rgb(255, 241, 241);   
+}
+
+.card a{
+    color: rgb(159, 130, 130);
+}
+
+.cardShiny {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgb(255, 199, 199);
+  margin: 10px;
+}
+
+.cardShiny img {
+  background-color: #fff;
+  border: solid 1px rgb(255, 199, 199);
+}
+
+.cardShiny h2{
+    color: rgb(255, 241, 241);
+    
+}
+
+.cardShiny a{
+    color: rgb(159, 130, 130);
+}
