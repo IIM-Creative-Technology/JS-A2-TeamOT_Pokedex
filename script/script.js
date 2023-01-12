@@ -1,3 +1,4 @@
+// avoir liste de pokemon
 let pokemon = document.getElementById("pokemon");
 let pokemonShiny = document.getElementById("pokemonShiny");
 
@@ -26,15 +27,16 @@ function getPokemon() {
 }
 getPokemon();
 
+// avoir liste de pokemonShiny
 
 function getPokemonShiny() {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=6")
-      .then((response) => response.json())
-      .then((data) => {
-        let pokemonShiny = data.results;
-        let output = "";
-        pokemonShiny.forEach(function (poke) {
-          output += `
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=6")
+    .then((response) => response.json())
+    .then((data) => {
+      let pokemonShiny = data.results;
+      let output = "";
+      pokemonShiny.forEach(function (poke) {
+        output += `
               <div class="cardShiny">
                   <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${poke.url.slice(
                     34,
@@ -46,8 +48,28 @@ function getPokemonShiny() {
   
               </div>
               `;
-        });
-        document.getElementById("pokemonShiny").innerHTML = output;
       });
+      document.getElementById("pokemonShiny").innerHTML = output;
+    });
+}
+
+// avoir pokemon recherchés
+
+let search = document.getElementById("search");
+
+// konami code
+const touche = [];
+const codeSecret = "shiny";
+
+window.addEventListener("keyup", (e) => {
+  console.log(e.key);
+  touche.push(e.key);
+  console.log(touche);
+
+  if (touche.join('').includes(codeSecret)){
+    console.log("DING DING!");
+    getPokemonShiny();
+    getPokemon = false;
   }
-  getPokemonShiny();
+  console.log(touche);
+});
