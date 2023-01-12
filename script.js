@@ -1,3 +1,9 @@
+
+
+
+
+
+
 Array.prototype.random = function () {
     return this[Math.floor((Math.random()*this.length))];
   }
@@ -64,6 +70,7 @@ async function DisplayInfo(ListePoke,max){
 
             // img to store pokemon image
             let img = document.createElement("img")
+            img.classList.add("images-poke")
 
             // if the image exist , add image from api
             if (data.sprites.front_default) {
@@ -83,7 +90,7 @@ async function DisplayInfo(ListePoke,max){
             stock_equipe_random.appendChild(div)
         })
         .catch((error) => {
-            ListeBug = ["pangoro","medicham","sneasler","passimian","pikachu","venonat"]
+            ListeBug = ["pangoro","medicham","sneasler","passimian","pikachu","venonat","starmie","wurmple","kartana","banette"]
             Poke = ListeBug.random()
             ListePoke.push(Poke)
             let div = document.createElement("div")
@@ -99,6 +106,8 @@ async function DisplayInfo(ListePoke,max){
 
             // img to store pokemon image
             let img = document.createElement("img")
+            img.classList.add("images-poke")
+
 
             // yikes
 
@@ -119,4 +128,21 @@ async function DisplayInfo(ListePoke,max){
         })
     }
     console.log(ListePoke)
+    let images = document.querySelectorAll(".images-poke")
+    console.log(images)
+    let k = 0
+
+    images.forEach(element => {
+        element.addEventListener("wheel",e=>{
+            if (k%2==1) {
+                element.src=element.src.replace("pokemon/","pokemon/back/")
+                k++
+            } else if (k%2==0) {
+                element.src=element.src.replace("pokemon/back/","pokemon/")
+                console.log('test2')
+                k++
+            }
+
+        })
+    });
 }
