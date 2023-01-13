@@ -122,7 +122,6 @@ button[type="submit"]:hover {
 .confetti{
     position: absolute;
     top: 0;
-    left: 25%;
     max-width: 640px;
     display: block;
     margin: 0 auto;
