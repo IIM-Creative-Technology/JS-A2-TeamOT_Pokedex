@@ -1,5 +1,7 @@
 let pokeContain = document.getElementById('pokemon-container')
 let a = 0
+let pokemonList = []
+let currentPokemonId 
 
 
 
@@ -8,6 +10,7 @@ let a = 0
 function dragStart(event) {
     event.dataTransfer.setData("text", event.target.id);
     console.log(event.target.id)
+    currentPokemonId = event.target.id
 }
 
 function drag(event) {
@@ -34,7 +37,9 @@ function drop(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(id));
+    pokemonList.push(currentPokemonId)
     console.log(a)
+    console.log(pokemonList)
 }
 
 fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
@@ -48,7 +53,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         let pokemonName = document.createElement('h2')
         pokemonName.innerHTML = pokemons[i].name
         pokemonDiv.appendChild(pokemonName)
-        pokemonDiv.id = pokemons[i].name
+        pokemonDiv.id = pokemons[i].url
         pokemonDiv.className = 'source-div'
         pokemonDiv.setAttribute("draggable", "true")
         fetch(pokemons[i].url)
@@ -56,6 +61,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         .then((data2) => {
             var pokemon = data2
             pokemonImage = document.createElement('img')
+            pokemonImage.classList.add('image-poke') 
             pokemonImage.src = pokemon.sprites.front_default
             pokemonDiv.appendChild(pokemonImage)
         }))
