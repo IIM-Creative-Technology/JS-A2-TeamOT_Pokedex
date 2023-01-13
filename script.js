@@ -122,9 +122,9 @@ function scoreCalcul($myTeam, $autoTeam) {
     }
 
     if ($myTeam.score > $autoTeam.score) {
-        console.log('myTeam Winner')
+        document.getElementById('text-result').innerHTML = 'Tu as gagné' + $myTeam.score + 'à' + $autoTeam.score
     } else {
-        console.log('autoTeam Winner')
+        document.getElementById('text-result').innerHTML = 'Tu as perdu' + $myTeam.score + 'à' + $autoTeam.score
     }
 }
 // =====================================================================================================================
