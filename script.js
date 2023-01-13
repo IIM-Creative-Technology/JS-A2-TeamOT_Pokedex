@@ -91,8 +91,10 @@ async function DisplayInfo(ListePoke,max){
             let modal = document.createElement("div")
             modal.classList.add("modal")
             modal.setAttribute("id","x"+index)
+            modal.classList.add("p-2")
             let Stats = document.createElement("p")
-            Stats.innerHTML="Pokemon Name : "+ListePoke[index]
+            Stats.innerHTML="Pokemon Name : "+ListePoke[index].toUpperCase()
+            Stats.classList.add("font-bold")
             modal.appendChild(Stats)
             // Setup popup modal avec les infos
 
@@ -102,6 +104,7 @@ async function DisplayInfo(ListePoke,max){
 
             let p4 = document.createElement("p")
             p4.innerHTML ="Abilities : "
+            p4.classList.add("font-bold")
             abilitiesStock.appendChild(p4)
             abilities.forEach(element => {
                 p3 = document.createElement("p")
@@ -169,14 +172,17 @@ async function DisplayInfo(ListePoke,max){
             let modal = document.createElement("div")
             modal.classList.add("modal")
             modal.setAttribute("id","x"+index)
+            modal.classList.add("p-2")
             let Stats = document.createElement("p")
-            Stats.innerHTML="Pokemon Name : "+Poke
+            Stats.innerHTML="Pokemon Name : "+Poke.toUpperCase()
+            Stats.classList.add("font-bold")
             modal.appendChild(Stats)
             // Setup de la popup modal avec les infos
 
             let abilitiesStock = document.createElement("div")
             let p4 = document.createElement("p")
             p4.innerHTML ="Abilities : "
+            p4.classList.add("font-bold")
             abilitiesStock.appendChild(p4)
             // Stock dans la modal avec les capacités des pokemons
 
