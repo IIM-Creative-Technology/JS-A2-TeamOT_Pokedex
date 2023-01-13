@@ -1,3 +1,4 @@
+// Partie Nathan
 let teamForm = document.getElementById('team-name-form')
 let field = document.getElementById('team-name-input')
 let fieldSubmit = document.getElementById('team-name-submit')
@@ -54,12 +55,7 @@ validation.onclick = () => {
 
 // Génére une nouvelle TeamStats avec la liste des urls a fetch des pokemons de son équipe et les autres clés à 0 par défaut
 let myTeamUrl = [
-    'https://pokeapi.co/api/v2/pokemon/4',
-    'https://pokeapi.co/api/v2/pokemon/125',
-    'https://pokeapi.co/api/v2/pokemon/236',
-    'https://pokeapi.co/api/v2/pokemon/652',
-    'https://pokeapi.co/api/v2/pokemon/423',
-    'https://pokeapi.co/api/v2/pokemon/753'
+
 ]
 
 let myTeamStats = new TeamStats(myTeamUrl, 0, 0, 0, 0)
@@ -89,11 +85,7 @@ async function teamBattle($team) {
                 $team.attack += parseInt(stats[1].base_stat)
                 $team.defense += parseInt(stats[2].base_stat)
             }
-        }
-        )
-        )
-        )
-        )
+        }))))
 }
 
 window.onload = teamBattle(myTeamStats)
@@ -158,14 +150,13 @@ function scoreCalcul($myTeam, $autoTeam) {
 //     }
 // };
 // xhr.send();
+// Fin partie Nathan
+
+// Partie Adam
 let pokeContain = document.getElementById('pokemon-container')
 let a = 0
-let pokemonList = []
 let currentPokemonId
 let maxChildren = 2
-
-
-
 
 function dragStart(event) {
     event.dataTransfer.setData("text", event.target.id);
@@ -197,16 +188,16 @@ function drop(event) {
     a++
     const id = event.dataTransfer.getData("text");
     document.getElementById('target-div').appendChild(document.getElementById(id));
-    pokemonList.push(currentPokemonId)
-    console.log(pokemonList)
+    myTeamUrl.push(currentPokemonId)
+    console.log(myTeamUrl)
 }
 
 fetch('https://pokeapi.co/api/v2/pokemon?limit=1200')
 .then((response) => response.json())
 .then((data) => { 
     const target = document.getElementById('target-div')
-    var pokemons = data.results;
-    for (var i = 0; i < pokemons.length; i++) {
+    let pokemons = data.results;
+    for (let i = 0; i < pokemons.length; i++) {
         let pokemonDiv = document.createElement('div')
         let pokemonName = document.createElement('h2')
         pokemonName.innerHTML = pokemons[i].name
@@ -217,7 +208,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=1200')
         fetch(pokemons[i].url)
         .then((response2) => response2.json()
         .then((data2) => {
-            var pokemon = data2
+            let pokemon = data2
             pokemonImage = document.createElement('img')
             pokemonImage.classList.add('image-poke')
             pokemonImage.src = pokemon.sprites.front_default
@@ -240,6 +231,9 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=1200')
 
 })
 
+// Fin partie Adam
+
+// Partie Ambre
 // avoir pokemon recherchés dans l'input
 
 const searchForm = document.querySelector("#search-form");
@@ -433,7 +427,9 @@ render = () => {
 window.addEventListener('click', function () {
     initConfetti();
 }); // ré-active la fonction au click
+// Fin partie Ambre
 
+// Partie Armand
 Array.prototype.random = function () {
     return this[Math.floor((Math.random()*this.length))];
   }
@@ -554,5 +550,115 @@ async function DisplayInfo(ListePoke,max){
 
         })
     }
+
+    // Cette boucle va permettre d'afficher uniquement 6 pokemons
+
+    let images = document.querySelectorAll(".images-poke")
+    // Crée une variable images qui contient tous les elments qui ont la classe images-poke
+
+    let k = 0
+    // Crée une variable k que l'on utilise pour "compter" les scroll
+
+    images.forEach(element => {
+        // va boucler sur le nombre d'images présentent dans le fichier html avec la classe images-poke (donc 6 fois)
+
+        element.addEventListener("wheel",e=>{
+            // en cas de scroll sur l'image , va effectuer les lignes suivantes
+
+            if (k%2==1) {
+                // Modulo 2 pour effectuer la fonction 1 scroll sur 2
+
+                element.src=element.src.replace("pokemon/","pokemon/back/")
+                // remplace le sprite standard par celui back
+
+                k++
+                // k+=1
+
+            } else if (k%2==0) {
+                // Modulo 2 pour effectuer la fonction 1 scroll sur 2
+
+                element.src=element.src.replace("pokemon/back/","pokemon/")
+                // remplace le sprite back par le standard
+
+                k++
+                // k+=1
+            }
+        })
+    });
+
+    let btn1 = document.getElementById("0")
+    let btn2 = document.getElementById("1")
+    let btn3 = document.getElementById("2")
+    let btn4 = document.getElementById("3")
+    let btn5 = document.getElementById("4")
+    let btn6 = document.getElementById("5")
+
+    let modalSelect1 = document.getElementById("x0")
+    let modalSelect2 = document.getElementById("x1")
+    let modalSelect3 = document.getElementById("x2")
+    let modalSelect4 = document.getElementById("x3")
+    let modalSelect5 = document.getElementById("x4")
+    let modalSelect6 = document.getElementById("x5")
+
+    let btnClose = document.querySelectorAll(".close-btn")
+    btn1.addEventListener("mouseover",()=>{
+        modalSelect1.style.display="block"
+    })
+    btn1.addEventListener("mouseout",()=>{
+        modalSelect1.style.display="none"
+    })
+
+    btn2.addEventListener("mouseover",()=>{
+        modalSelect2.style.display="block"
+    })
+    btn2.addEventListener("mouseout",()=>{
+        modalSelect2.style.display="none"
+    })
+
+    btn3.addEventListener("mouseover",()=>{
+        modalSelect3.style.display="block"
+    })
+    btn3.addEventListener("mouseout",()=>{
+        modalSelect3.style.display="none"
+    })
+
+    btn4.addEventListener("mouseover",()=>{
+        modalSelect4.style.display="block"
+    })
+    btn4.addEventListener("mouseout",()=>{
+        modalSelect4.style.display="none"
+    })
+
+    btn5.addEventListener("mouseover",()=>{
+        modalSelect5.style.display="block"
+    })
+    btn5.addEventListener("mouseout",()=>{
+        modalSelect5.style.display="none"
+    })
+
+    btn6.addEventListener("mouseover",()=>{
+        modalSelect6.style.display="block"
+    })
+    btn6.addEventListener("mouseout",()=>{
+        modalSelect6.style.display="none"
+    })
+
+
+    btnClose.forEach(element => {
+        element.addEventListener("click",()=>{
+            modalSelect1.style.display="none"
+            modalSelect2.style.display="none"
+            modalSelect3.style.display="none"
+            modalSelect4.style.display="none"
+            modalSelect5.style.display="none"
+            modalSelect6.style.display="none"
+        })
+    });
+    ListePoke.forEach(element => {
+        autoGeneratedTeamUrl.push('https://pokeapi.co/api/v2/pokemon/' + element)
+    });
+    console.log(autoGeneratedTeamStats)
     console.log(ListePoke)
 }
+
+// Fin partie Armand
