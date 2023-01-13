@@ -8,46 +8,40 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
+    <!-- HEADER -->
     <header>
       <nav>
         <h1 id="logo">Pokébattle</h1>
+        <form id="search-form">
+          <input type="text" id="search-input" />
+          <button type="submit">Search</button>
+        </form>
         <ul>
           <li>user</li>
           <li>pokédex</li>
         </ul>
       </nav>
     </header>
+
+    <!-- MAIN -->
     <main>
+      <!-- FORM POUR RECHERCHER DES POKEMON -->
 
-      <form id="search-form">
-        <input type="text" id="search-input">
-        <button type="submit">Search</button>
-    </form>
-    <div id="result-container"></div>
+      <div id="result-container"></div>
 
-      <section id="results">
-        <div id="test"></div>
-        <div class="poke">
-          <img src="" alt="" />
-          <h2></h2>
-          <p></p>
-        </div>
-      </section>
-
-      <section id="canvas">
-        <canvas id="myCanvas" width="150" height="150"></canvas>
-      </section>
-
-      <section id="cards">
-        <div id="pokemon"></div>
-        <div id="pokemonShiny"></div>
-      </section>
+      <!-- CARDS DES POKEMON GÉNÉRÉS  -->
+      <canvas id="canvas" class="confetti"></canvas>
 
       
+      <section id="cards">
+        <div id="pokemon"></div>
+        
+        <div id="pokemonShiny"></div>
+      </section>
     </main>
+
+    <!-- LIEN JS -->
     <script src="script/script.js"></script>
     <script src="script/canvaAnim.js"></script>
-    <script>
-    </script>
   </body>
 </html>

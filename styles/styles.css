@@ -1,4 +1,59 @@
-#cards {
+/* NAV */
+
+header {
+  background-color: #bc3e3e;
+  color: white;
+  text-align: center;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+#logo {
+  font-size: 2em;
+  margin-left: 1em;
+}
+ul {
+  list-style: none;
+  display: flex;
+  margin-right: 1em;
+}
+li {
+  margin: 0 1em;
+}
+
+/* SEARCH FORM*/
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em 0;
+}
+#search-input {
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  margin-right: 1em;
+  font-size: 1.2em;
+}
+button[type="submit"] {
+  padding: 0.5em 1em;
+  background-color: rgb(129, 105, 105);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+button[type="submit"]:hover {
+  background-color: rgb(55, 44, 44);
+}
+
+/* CARDS POKEMON */
+
+#pokemon {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -6,45 +61,71 @@
   gap: 50px;
 }
 
+#pokemonShiny {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+
 .card {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: rgb(255, 199, 199);
+  background-color: rgb(129, 105, 105);
   margin: 10px;
 }
 
 .card img {
   background-color: #fff;
-  border: solid 1px rgb(255, 199, 199);
+  border: solid 1px rgb(129, 105, 105);
 }
 
-.card h2{
-    color: rgb(255, 241, 241);   
+.card h2 {
+  color: rgb(255, 241, 241);
 }
 
-.card a{
-    color: rgb(159, 130, 130);
+.card a {
+
+  text-decoration: none;
+  color: rgb(229, 229, 229);
 }
 
 .cardShiny {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: rgb(255, 199, 199);
+  background-color: rgb(129, 105, 105);
   margin: 10px;
 }
 
 .cardShiny img {
   background-color: #fff;
-  border: solid 1px rgb(255, 199, 199);
+  border: solid 1px rgb(129, 105, 105);
 }
 
-.cardShiny h2{
-    color: rgb(255, 241, 241);
-    
+.cardShiny h2 {
+  color: rgb(255, 241, 241);
 }
 
-.cardShiny a{
-    color: rgb(159, 130, 130);
+.cardShiny a {
+  text-decoration: none;
+  color: rgb(229, 229, 229);
 }
+
+
+
+
+/* CANVAS*/
+
+.confetti{
+    position: absolute;
+    top: 0;
+    left: 25%;
+    max-width: 640px;
+    display: block;
+    margin: 0 auto;
+    border: 1px  #ddd;
+ }
+
