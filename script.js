@@ -84,20 +84,31 @@ async function DisplayInfo(ListePoke,max){
 
             let btnInfos = document.createElement("p")
             btnInfos.innerHTML = "Infos"
-            btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center")
+            btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center","btnPoke","mt-4","mb-4")
             btnInfos.setAttribute("id",index)
+            // btn qui va afficher les infos des pokemons en plus
 
             let modal = document.createElement("div")
             modal.classList.add("modal")
             modal.setAttribute("id","x"+index)
-            let close = document.createElement("button")
-            close.innerHTML="close"
-            close.classList.add("close-btn")
-            modal.appendChild(close)
             let Stats = document.createElement("p")
-            Stats.innerHTML=ListePoke[index]
+            Stats.innerHTML="Pokemon Name : "+ListePoke[index]
             modal.appendChild(Stats)
-            
+            // Setup popup modal avec les infos
+
+            let abilitiesStock = document.createElement("div")
+            let abilities = data.abilities
+            // stock des abilities
+
+            let p4 = document.createElement("p")
+            p4.innerHTML ="Abilities : "
+            abilitiesStock.appendChild(p4)
+            abilities.forEach(element => {
+                p3 = document.createElement("p")
+                p3.innerHTML ="- "+element.ability.name
+                abilitiesStock.appendChild(p3)
+            });
+            // affiche les capacités dans le stock de capacités
 
             if (data.sprites.front_default) {
                 img.src = data.sprites.front_default
@@ -114,6 +125,7 @@ async function DisplayInfo(ListePoke,max){
             div.appendChild(img)
             div.appendChild(p2)
             div.appendChild(btnInfos)
+            modal.appendChild(abilitiesStock)
             div.appendChild(modal)
             stock_equipe_random.appendChild(div)
             // met tous les elements dans le html
@@ -150,23 +162,33 @@ async function DisplayInfo(ListePoke,max){
 
             let btnInfos = document.createElement("p")
             btnInfos.innerHTML = "Infos"
-            btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center")
+            btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center","btnPoke","mt-4","mb-4")
             btnInfos.setAttribute("id",index)
+            // images pour afficher les infos en plus des pokemons
 
             let modal = document.createElement("div")
             modal.classList.add("modal")
             modal.setAttribute("id","x"+index)
-            let close = document.createElement("button")
-            close.innerHTML="close"
-            close.classList.add("close-btn")
-            modal.appendChild(close)
             let Stats = document.createElement("p")
-            Stats.innerHTML=Poke
+            Stats.innerHTML="Pokemon Name : "+Poke
             modal.appendChild(Stats)
+            // Setup de la popup modal avec les infos
+
+            let abilitiesStock = document.createElement("div")
+            let p4 = document.createElement("p")
+            p4.innerHTML ="Abilities : "
+            abilitiesStock.appendChild(p4)
+            // Stock dans la modal avec les capacités des pokemons
 
             fetch('https://pokeapi.co/api/v2/pokemon/' + Poke)
                 .then(result => result.json())
                 .then(data => {
+                    let abilities = data.abilities
+                    abilities.forEach(element => {
+                    p = document.createElement("p")
+                    p.innerHTML ="- "+element.ability.name
+                    abilitiesStock.appendChild(p)
+                    });
                     img.src = data.sprites.front_default
                     p2.innerHTML = "Type : "+data.types[0].type.name
                 })
@@ -180,6 +202,7 @@ async function DisplayInfo(ListePoke,max){
             div.appendChild(img)
             div.appendChild(p2)
             div.appendChild(btnInfos)
+            modal.appendChild(abilitiesStock)
             div.appendChild(modal)
             stock_equipe_random.appendChild(div)
             // mets tous les childs dans le html
@@ -236,23 +259,46 @@ async function DisplayInfo(ListePoke,max){
     let modalSelect6 = document.getElementById("x5")
 
     let btnClose = document.querySelectorAll(".close-btn")
-    btn1.addEventListener("click",()=>{
+    btn1.addEventListener("mouseover",()=>{
         modalSelect1.style.display="block"
     })
-    btn2.addEventListener("click",()=>{
+    btn1.addEventListener("mouseout",()=>{
+        modalSelect1.style.display="none"
+    })
+
+    btn2.addEventListener("mouseover",()=>{
         modalSelect2.style.display="block"
     })
-    btn3.addEventListener("click",()=>{
+    btn2.addEventListener("mouseout",()=>{
+        modalSelect2.style.display="none"
+    })
+
+    btn3.addEventListener("mouseover",()=>{
         modalSelect3.style.display="block"
     })
-    btn4.addEventListener("click",()=>{
+    btn3.addEventListener("mouseout",()=>{
+        modalSelect3.style.display="none"
+    })
+
+    btn4.addEventListener("mouseover",()=>{
         modalSelect4.style.display="block"
     })
-    btn5.addEventListener("click",()=>{
+    btn4.addEventListener("mouseout",()=>{
+        modalSelect4.style.display="none"
+    })
+
+    btn5.addEventListener("mouseover",()=>{
         modalSelect5.style.display="block"
     })
-    btn6.addEventListener("click",()=>{
+    btn5.addEventListener("mouseout",()=>{
+        modalSelect5.style.display="none"
+    })
+
+    btn6.addEventListener("mouseover",()=>{
         modalSelect6.style.display="block"
+    })
+    btn6.addEventListener("mouseout",()=>{
+        modalSelect6.style.display="none"
     })
 
 
