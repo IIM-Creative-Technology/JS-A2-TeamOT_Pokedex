@@ -165,7 +165,7 @@ button[type="submit"]:hover {
 }
 
 .image-poke{
-  z-index: -1;
+  -webkit-user-drag: none;
   position: relative;
 }
 
