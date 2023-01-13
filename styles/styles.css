@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* NAV */
 
 header {
@@ -128,4 +134,46 @@ button[type="submit"]:hover {
     margin: 0 auto;
     border: 1px  #ddd;
  }
+
+#target-div{
+  border: solid black 1px;
+  height: 80vh;
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.image-poke{
+  z-index: -1;
+  position: relative;
+}
+
+#pokemon-container{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40%;
+  gap: 30px;
+  overflow-y: auto;
+  height: 80vh;
+}
+
+.source-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  z-index: 999;
+  width: 120px;
+  border: solid black 2px;
+  max-height: 200px;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+}
 
