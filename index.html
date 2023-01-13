@@ -10,7 +10,7 @@
   <body>
     <header>
       <nav>
-        <h1 id="logo">Pokétimot</h1>
+        <h1 id="logo">Pokébattle</h1>
         <ul>
           <li>user</li>
           <li>pokédex</li>
@@ -19,12 +19,14 @@
     </header>
     <main>
 
-      <form id="search">
-        <input type="text" placeholder="Search for a Pokemon" />
-        <button id="btn">Search</button>
-      </form>
+      <form id="search-form">
+        <input type="text" id="search-input">
+        <button type="submit">Search</button>
+    </form>
+    <div id="result-container"></div>
 
       <section id="results">
+        <div id="test"></div>
         <div class="poke">
           <img src="" alt="" />
           <h2></h2>

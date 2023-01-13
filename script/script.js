@@ -17,7 +17,6 @@ function getPokemon() {
                 )}.png" alt="${poke.name}">
                 <h2>${poke.name}</h2>
                 <a href="${poke.url}">Details</a>  
-                <p></p> 
 
             </div>
             `;
@@ -43,8 +42,8 @@ function getPokemonShiny() {
                     -1
                   )}.png" alt="${poke.name}">
                   <h2>${poke.name}</h2>
-                  <a href="${poke.url}">Details</a>  
-                  <p></p> 
+                  <a href="${poke.url}">Details</a> 
+                  
   
               </div>
               `;
@@ -55,9 +54,32 @@ function getPokemonShiny() {
 
 // avoir pokemon recherchés
 
-let search = document.getElementById("search");
 
-// konami code
+const searchForm = document.querySelector('#search-form');
+const searchInput = document.querySelector('#search-input');
+const resultContainer = document.querySelector('#result-container');
+
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const searchValue = searchInput.value;
+    resultContainer.innerHTML = 'Loading...';
+    fetch(`https://pokeapi.co/api/v2/pokemon/${searchValue}`)
+        .then(response => response.json())
+        .then(data => {
+            resultContainer.innerHTML = `
+                <p>Name: ${data.name}</p>
+                <p>ID: ${data.id}</p>
+                <img src="${data.sprites.front_default}">
+            `;
+        })
+        .catch(error => {
+            resultContainer.innerHTML = 'Pokemon not found.';
+        });
+});
+
+
+
+// konami code 
 const touche = [];
 const codeSecret = "shiny";
 
@@ -69,7 +91,9 @@ window.addEventListener("keyup", (e) => {
   if (touche.join('').includes(codeSecret)){
     console.log("DING DING!");
     getPokemonShiny();
-    getPokemon = false;
+    getPokemon() = false;
   }
   console.log(touche);
 });
+
+
