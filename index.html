@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,14 +26,42 @@
         </nav>
     </header>
 
+    <div id="Pokedex" class="bg-gray-400 w-[80%] m-auto mt-20 flex flex-col">
+        <h2 class="font-bold text-black text-2xl m-auto p-4">Pokedex</h2>
+        <select id="types" class="border-black border-solid border-2 w-[30%] m-auto mb-8">
+            <option selected value=""></option>
+            <option value="normal">normal</option>
+            <option value="fighting">fighting</option>
+            <option value="flying">flying</option>
+            <option value="poison">poison</option>
+            <option value="ground">ground</option>
+            <option value="rock">rock</option>
+            <option value="bug">bug</option>
+            <option value="ghost">ghost</option>
+            <option value="steel">steel</option>
+            <option value="fire">fire</option>
+            <option value="water">water</option>
+            <option value="grass">grass</option>
+            <option value="electric">electric</option>
+            <option value="psychic">psychic</option>
+            <option value="ice">ice</option>
+            <option value="dragon">dragon</option>
+            <option value="dark">dark</option>
+            <option value="fairy">fairy</option>
+            <option value="unknown">unknown</option>
+            <option value="shadow">shadow</option>
+        </select>
+        <p id="pElem"></p>
+        <div id="stock-pokedex" class="flex flex-wrap">
+
+        </div>
+    </div>
+
     <form id="team-name-form">
         <label for="team-name-input">Saisie le nom de ton équipe </label>
         <input type="text" name="team-name" id="team-name-input">
         <input type="submit" id="team-name-submit">
     </form>
-    <section id="my-team">
-
-    </section>
 
     <button id="validation">Valider</button>
 
@@ -57,6 +84,9 @@
 
     <!-- LIEN JS -->
     <section>
+        <div id="my-team">
+
+        </div>
         <div id="pokemon-container" class="">
 
         </div>

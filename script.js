@@ -351,7 +351,7 @@ let confetti = [];
 const confettiCount = 500;
 const gravity = 0.7;
 const terminalVelocity = 5;
-const drag = 0.075;
+const dragSpeed = 0.075;
 const colors = [
     { front: 'red', back: 'darkred' },
     { front: 'antiquewhite', back: 'darkyellow' },
@@ -398,7 +398,7 @@ render = () => {
         ctx.rotate(confetto.rotation);
 
         // Apply forces to velocity
-        confetto.velocity.x -= confetto.velocity.x * drag;
+        confetto.velocity.x -= confetto.velocity.x * dragSpeed;
         confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
         confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
 
@@ -469,88 +469,170 @@ function GenerateRandomTeam(){
     DisplayInfo(ListePoke,max)
 }
 async function DisplayInfo(ListePoke,max){
-    
     let stock_equipe_random = document.getElementById("stock-equipe-random")
+    // récupères le stockage dans index.html
 
     while (stock_equipe_random.firstChild) {
         stock_equipe_random.removeChild(stock_equipe_random.firstChild);
-      }
-
+    }
+    // boucle qui vide ce stoackage
 
     for (let index = 0; index !=max; index++) {
+        // boucle qui va de 0 à 6
+
         await fetch('https://pokeapi.co/api/v2/pokemon/' + ListePoke[index])
-        .then(result => result.json())
-        .then(data => {
-            // div to store pokemon data
-            let div = document.createElement("div")
-            div.classList.add("flex","flex-col","w-[33.333%]","boder-solid","border-2","border-black")
+            .then(result => result.json())
+            .then(data => {
+                let div = document.createElement("div")
+                div.classList.add("flex","flex-col","w-[33.333%]","boder-solid","border-2","border-black")
+                // div qui stock la data des pokemons
 
-            // p to store pokemon name
-            let p = document.createElement("p")
-            p.classList.add("text-black","text-2xl","font-bold","m-auto")
+                let p = document.createElement("p")
+                p.classList.add("text-black","text-2xl","font-bold","m-auto")
+                // p qui stock le nom des pokemons
 
-            // p to store type
-            let p2 = document.createElement("p")
-            p2.classList.add("text-black","text-xl","m-auto")
-            p2.innerHTML = "Type : "+data.types[0].type.name
+                let p2 = document.createElement("p")
+                p2.classList.add("text-black","text-xl","m-auto")
+                p2.innerHTML = "Type : "+data.types[0].type.name
+                // p qui stock le type des pokemons
 
-            // img to store pokemon image
-            let img = document.createElement("img")
+                let img = document.createElement("img")
+                img.classList.add("images-poke")
+                // img qui stock l'image des pokemons
 
-            // if the image exist , add image from api
-            if (data.sprites.front_default) {
-                img.src = data.sprites.front_default
-                p.innerHTML = ListePoke[index]
+                let btnInfos = document.createElement("p")
+                btnInfos.innerHTML = "Infos"
+                btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center","btnPoke","mt-4","mb-4")
+                btnInfos.setAttribute("id",index)
+                // btn qui va afficher les infos des pokemons en plus
 
-            // else , use unknown.png instead
-            } else {
-                img.src = "unknown.png"
-                p.innerHTML = ListePoke[index]
-            }
+                let modal = document.createElement("div")
+                modal.classList.add("modal")
+                modal.setAttribute("id","x"+index)
+                modal.classList.add("p-2")
+                let Stats = document.createElement("p")
+                Stats.innerHTML="Pokemon Name : "+ListePoke[index].toUpperCase()
+                Stats.classList.add("font-bold")
+                modal.appendChild(Stats)
+                // Setup popup modal avec les infos
 
-            // append all childs to hmtl
-            div.appendChild(p)
-            div.appendChild(img)
-            div.appendChild(p2)
-            stock_equipe_random.appendChild(div)
-        })
-        .catch((error) => {
-            ListeBug = ["pangoro","medicham","sneasler","passimian","pikachu","venonat"]
-            Poke = ListeBug.random()
-            ListePoke.push(Poke)
-            let div = document.createElement("div")
-            div.classList.add("flex","flex-col","w-[33.333%]","boder-solid","border-2","border-black")
+                let abilitiesStock = document.createElement("div")
+                let abilities = data.abilities
+                // stock des abilities
 
-            // p to store pokemon name
-            let p = document.createElement("p")
-            p.classList.add("text-black","text-2xl","font-bold","m-auto")
+                let p4 = document.createElement("p")
+                p4.innerHTML ="Abilities : "
+                p4.classList.add("font-bold")
+                abilitiesStock.appendChild(p4)
+                abilities.forEach(element => {
+                    p3 = document.createElement("p")
+                    p3.innerHTML ="- "+element.ability.name
+                    abilitiesStock.appendChild(p3)
+                });
+                // affiche les capacités dans le stock de capacités
 
-            // p to store type
-            let p2 = document.createElement("p")
-            p2.classList.add("text-black","text-xl","m-auto")
-
-            // img to store pokemon image
-            let img = document.createElement("img")
-
-            // yikes
-
-            fetch('https://pokeapi.co/api/v2/pokemon/' + Poke)
-                .then(result => result.json())
-                .then(data => {
+                if (data.sprites.front_default) {
                     img.src = data.sprites.front_default
-                    p2.innerHTML = "Type : "+data.types[0].type.name
-                })
-            p.innerHTML = Poke
+                    p.innerHTML = ListePoke[index]
+                    // test si l'image existe , si c'est le cas utilise l'image de l'api
 
-            // append all childs to hmtl
-            div.appendChild(p)
-            div.appendChild(img)
-            div.appendChild(p2)
-            stock_equipe_random.appendChild(div)
+                } else {
+                    img.src = "unknown.png"
+                    p.innerHTML = ListePoke[index]
+                }
+                // sinon utilise unknown.png
 
-        })
+                div.appendChild(p)
+                div.appendChild(img)
+                div.appendChild(p2)
+                div.appendChild(btnInfos)
+                modal.appendChild(abilitiesStock)
+                div.appendChild(modal)
+                stock_equipe_random.appendChild(div)
+                // met tous les elements dans le html
+
+            })
+            // Ce then data s'execute si l'api réussi bien à recuperer le pokemon par son nom
+            // (ce qui peut buger pour certains noms)
+
+            .catch((error) => {
+                ListeBug = ["pangoro","medicham","sneasler","passimian","pikachu","venonat","starmie","wurmple","kartana","banette"]
+                // Crée une liste composée de certains pokemons
+
+                Poke = ListeBug.random()
+                // Utilise la fonction random pour récupérer aléatoirement un nom dans ListeBug
+
+                ListePoke.push(Poke)
+                // Ajoute à ListePoke le pokemon choisit aléatoirement
+
+                let div = document.createElement("div")
+                div.classList.add("flex","flex-col","w-[33.333%]","boder-solid","border-2","border-black")
+                // div pour stocker la data du pokemon
+
+                let p = document.createElement("p")
+                p.classList.add("text-black","text-2xl","font-bold","m-auto")
+                // p pour stocker le nom du pokemon
+
+                let p2 = document.createElement("p")
+                p2.classList.add("text-black","text-xl","m-auto")
+                // p pour stocker le type du pokemon
+
+                let img = document.createElement("img")
+                img.classList.add("images-poke")
+                // img pour stocker l'image du pokemon
+
+                let btnInfos = document.createElement("p")
+                btnInfos.innerHTML = "Infos"
+                btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center","btnPoke","mt-4","mb-4")
+                btnInfos.setAttribute("id",index)
+                // images pour afficher les infos en plus des pokemons
+
+                let modal = document.createElement("div")
+                modal.classList.add("modal")
+                modal.setAttribute("id","x"+index)
+                modal.classList.add("p-2")
+                let Stats = document.createElement("p")
+                Stats.innerHTML="Pokemon Name : "+Poke.toUpperCase()
+                Stats.classList.add("font-bold")
+                modal.appendChild(Stats)
+                // Setup de la popup modal avec les infos
+
+                let abilitiesStock = document.createElement("div")
+                let p4 = document.createElement("p")
+                p4.innerHTML ="Abilities : "
+                p4.classList.add("font-bold")
+                abilitiesStock.appendChild(p4)
+                // Stock dans la modal avec les capacités des pokemons
+
+                fetch('https://pokeapi.co/api/v2/pokemon/' + Poke)
+                    .then(result => result.json())
+                    .then(data => {
+                        let abilities = data.abilities
+                        abilities.forEach(element => {
+                            p = document.createElement("p")
+                            p.innerHTML ="- "+element.ability.name
+                            abilitiesStock.appendChild(p)
+                        });
+                        img.src = data.sprites.front_default
+                        p2.innerHTML = "Type : "+data.types[0].type.name
+                    })
+                // récupères le type et l'image du pokemon choisit dans aléatoirement ListeBug avec l'api
+
+                p.innerHTML = Poke
+                // Définit le nom du pokemon comme étant égal au Pokemon choisit
+                // aléatoirement dans ListeBug
+
+                div.appendChild(p)
+                div.appendChild(img)
+                div.appendChild(p2)
+                div.appendChild(btnInfos)
+                modal.appendChild(abilitiesStock)
+                div.appendChild(modal)
+                stock_equipe_random.appendChild(div)
+                // mets tous les childs dans le html
+
+            })
     }
-
     // Cette boucle va permettre d'afficher uniquement 6 pokemons
 
     let images = document.querySelectorAll(".images-poke")
