@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex flex-col">
+    <div id="Pokedex" class="bg-gray-400 w-[80%] m-auto mt-20 flex flex-col">
+        <h2 class="font-bold text-black text-2xl m-auto p-4">Pokedex</h2>
+        <select id="types" class="border-black border-solid border-2 w-[30%] m-auto mb-8">
+            <option selected value=""></option>
+            <option value="normal">normal</option>
+            <option value="fighting">fighting</option>
+            <option value="flying">flying</option>
+            <option value="poison">poison</option>
+            <option value="ground">ground</option>
+            <option value="rock">rock</option>
+            <option value="bug">bug</option>
+            <option value="ghost">ghost</option>
+            <option value="steel">steel</option>
+            <option value="fire">fire</option>
+            <option value="water">water</option>
+            <option value="grass">grass</option>
+            <option value="electric">electric</option>
+            <option value="psychic">psychic</option>
+            <option value="ice">ice</option>
+            <option value="dragon">dragon</option>
+            <option value="dark">dark</option>
+            <option value="fairy">fairy</option>
+            <option value="unknown">unknown</option>
+            <option value="shadow">shadow</option>
+        </select>
+        <p id="pElem"></p>
+        <div id="stock-pokedex" class="flex flex-wrap">
+
+        </div>
+    </div>  
+    <h2 class="font-bold text-black text-2xl m-auto mt-20">Generate Enemy Team</h2>
+    <button id="test" class="button-generate font-bold bg-red-600 w-[80%] p-8 text-white m-auto mt-20 btnPoke">Generate</button>
+    <div id="stock-equipe-random" class="bg-gray-400 w-[80%] m-auto mt-20 flex flex-wrap">
+
+    </div>
+    <script src="Armand-JS1.js"></script>
+    <script src="Armand-JS2.js"></script>
+</body>
+</html>

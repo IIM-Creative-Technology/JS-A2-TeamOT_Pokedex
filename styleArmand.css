@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modal{
+    display: none;
+    margin: auto;
+    position: absolute;
+    width: 26.5%;
+    min-height: 100px;
+    background-color:white;
+}
+
+.btnPoke:hover{
+    border: solid 2px black;
+    transition: 0.5s;
+    background-color: white;
+    color: red;
+}

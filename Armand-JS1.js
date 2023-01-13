@@ -318,7 +318,11 @@ async function DisplayInfo(ListePoke,max){
             modalSelect6.style.display="none"
         })
     });
-    
+    ListeURL = []
+    ListePoke.forEach(element => {
+        ListeURL.push('https://pokeapi.co/api/v2/pokemon/' + element)
+    });
+    console.log(ListeURL)
 
     
 }
