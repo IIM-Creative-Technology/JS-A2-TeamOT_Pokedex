@@ -7,6 +7,8 @@ let myTeam = document.getElementById('my-team')
 let username = document.createElement('h1')
 let myPokedex = document.createElement('div')
 
+
+window.onload = adamFetch();
 // Class Team pour le stockage en local storage
 class Team
 {
@@ -192,44 +194,48 @@ function drop(event) {
     console.log(myTeamUrl)
 }
 
-fetch('https://pokeapi.co/api/v2/pokemon?limit=1200')
-.then((response) => response.json())
-.then((data) => { 
-    const target = document.getElementById('target-div')
-    let pokemons = data.results;
-    for (let i = 0; i < pokemons.length; i++) {
-        let pokemonDiv = document.createElement('div')
-        let pokemonName = document.createElement('h2')
-        pokemonName.innerHTML = pokemons[i].name
-        pokemonDiv.appendChild(pokemonName)
-        pokemonDiv.id = pokemons[i].url
-        pokemonDiv.className = 'source-div'
-        pokemonDiv.setAttribute("draggable", "true")
-        fetch(pokemons[i].url)
-        .then((response2) => response2.json()
-        .then((data2) => {
-            let pokemon = data2
-            pokemonImage = document.createElement('img')
-            pokemonImage.classList.add('image-poke')
-            pokemonImage.src = pokemon.sprites.front_default
-            pokemonDiv.appendChild(pokemonImage)
-        }))
-        pokeContain.appendChild(pokemonDiv)
-    }
-    
-    const sources = document.getElementsByClassName('source-div')           
-    for (const source of sources){
-        source.addEventListener("dragstart", dragStart);
-        source.addEventListener("drag", drag);
-        source.addEventListener("dragend", dragEnd);
-    }
+let currentImage = 'front_default'
+function adamFetch(){
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=1200')
+    .then((response) => response.json())
+    .then((data) => { 
+        const target = document.getElementById('target-div')
+        let pokemons = data.results;
+        for (let i = 0; i < pokemons.length; i++) {
+            let pokemonDiv = document.createElement('div')
+            let pokemonName = document.createElement('h2')
+            pokemonName.innerHTML = pokemons[i].name
+            pokemonDiv.appendChild(pokemonName)
+            pokemonDiv.id = pokemons[i].url
+            pokemonDiv.className = 'source-div'
+            pokemonDiv.setAttribute("draggable", "true")
+            fetch(pokemons[i].url)
+            .then((response2) => response2.json()
+            .then((data2) => {
+                let pokemon = data2
+                pokemonImage = document.createElement('img')
+                pokemonImage.classList.add('image-poke')
+                pokemonImage.src = pokemon['sprites'][currentImage]
+                pokemonDiv.appendChild(pokemonImage)
+            }))
+            pokeContain.appendChild(pokemonDiv)
+        }
+        
+        const sources = document.getElementsByClassName('source-div')           
+        for (const source of sources){
+            source.addEventListener("dragstart", dragStart);
+            source.addEventListener("drag", drag);
+            source.addEventListener("dragend", dragEnd);
+        }
 
-    target.addEventListener("dragenter", dragEnter);
-    target.addEventListener("dragover", dragOver);
-    target.addEventListener("drop", drop);
-    
+        target.addEventListener("dragenter", dragEnter);
+        target.addEventListener("dragover", dragOver);
+        target.addEventListener("drop", drop);
+        
 
-})
+    })
+}
+
 
 // Fin partie Adam
 
@@ -263,10 +269,12 @@ let pokemon = document.getElementById("pokemon");
 let pokemonShiny = document.getElementById("pokemonShiny");
 
 function getPokemon() {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=6")
+    for (let index = 0; index < 6; index++) {
+        fetch(myTeamUrl[index])
         .then((response) => response.json())
         .then((data) => {
             let pokemon = data.results;
+            console.log(pokemon)
             let output = "";
             pokemon.forEach(function (poke) {
                 output += `
@@ -282,41 +290,47 @@ function getPokemon() {
             `;
             });
             document.getElementById("pokemon").innerHTML = output;
-        });
+        });  
+    }
 }
-getPokemon();
+
 
 // supprime la fonction getPokemon pour avoir une liste de pokemonShiny
 
 function removePokemon() {
-    pokemon.innerHTML = "";
+    document.getElementById('pokemon-container').innerHTML = "";
+    currentImage = 'front_shiny'
+    adamFetch();
 }
 
 // avoir une liste de pokemonShiny
 
-function getPokemonShiny() {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=6")
-        .then((response) => response.json())
-        .then((data) => {
-            let pokemonShiny = data.results;
-            let output = "";
-            pokemonShiny.forEach(function (poke) {
-                output += `
-              <div class="cardShiny">
-                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${poke.url.slice(
-                    34,
-                    -1
-                )}.png" alt="${poke.name}">
-                  <h2>${poke.name}</h2>
-                  <a href="${poke.url}">Details</a> 
-                  
-  
-              </div>
-              `;
+/*    function getPokemonShiny() {
+        for (let index = 0; index < 6; index++) {
+            fetch(myTeamUrl[index])
+            .then((response) => response.json())
+            .then((data) => {
+                let pokemonShiny = data.results;
+                let output = "";
+                pokemonShiny.forEach(function (poke) {
+                    output += `
+                <div class="cardShiny">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${poke.url.slice(
+                        34,
+                        -1
+                    )}.png" alt="${poke.name}">
+                    <h2>${poke.name}</h2>
+                    <a href="${poke.url}">Details</a> 
+                    
+    
+                </div>
+                `;
+                });
+                document.getElementById("pokemonShiny").innerHTML = output;
             });
-            document.getElementById("pokemonShiny").innerHTML = output;
-        });
-}
+        }
+    }
+*/ 
 
 // konami code
 const touche = [];
@@ -329,7 +343,6 @@ window.addEventListener("keyup", (e) => {
 
     if (touche.join("").includes(codeSecret)) {
         alert("✨it's glitter time!✨");
-        getPokemonShiny();
         removePokemon();
         initConfetti();
         render();
@@ -351,7 +364,7 @@ let confetti = [];
 const confettiCount = 500;
 const gravity = 0.7;
 const terminalVelocity = 5;
-const drag = 0.075;
+const dragSpeed = 0.075;
 const colors = [
     { front: 'red', back: 'darkred' },
     { front: 'antiquewhite', back: 'darkyellow' },
@@ -398,7 +411,7 @@ render = () => {
         ctx.rotate(confetto.rotation);
 
         // Apply forces to velocity
-        confetto.velocity.x -= confetto.velocity.x * drag;
+        confetto.velocity.x -= confetto.velocity.x * dragSpeed;
         confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
         confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
 
