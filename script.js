@@ -82,6 +82,23 @@ async function DisplayInfo(ListePoke,max){
             img.classList.add("images-poke")
             // img qui stock l'image des pokemons
 
+            let btnInfos = document.createElement("p")
+            btnInfos.innerHTML = "Infos"
+            btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center")
+            btnInfos.setAttribute("id",index)
+
+            let modal = document.createElement("div")
+            modal.classList.add("modal")
+            modal.setAttribute("id","x"+index)
+            let close = document.createElement("button")
+            close.innerHTML="close"
+            close.classList.add("close-btn")
+            modal.appendChild(close)
+            let Stats = document.createElement("p")
+            Stats.innerHTML=ListePoke[index]
+            modal.appendChild(Stats)
+            
+
             if (data.sprites.front_default) {
                 img.src = data.sprites.front_default
                 p.innerHTML = ListePoke[index]
@@ -96,6 +113,8 @@ async function DisplayInfo(ListePoke,max){
             div.appendChild(p)
             div.appendChild(img)
             div.appendChild(p2)
+            div.appendChild(btnInfos)
+            div.appendChild(modal)
             stock_equipe_random.appendChild(div)
             // met tous les elements dans le html
 
@@ -129,6 +148,22 @@ async function DisplayInfo(ListePoke,max){
             img.classList.add("images-poke")
             // img pour stocker l'image du pokemon
 
+            let btnInfos = document.createElement("p")
+            btnInfos.innerHTML = "Infos"
+            btnInfos.classList.add("bg-red-600","p-2","text-white","font-bold","m-auto","w-[30%]","text-center")
+            btnInfos.setAttribute("id",index)
+
+            let modal = document.createElement("div")
+            modal.classList.add("modal")
+            modal.setAttribute("id","x"+index)
+            let close = document.createElement("button")
+            close.innerHTML="close"
+            close.classList.add("close-btn")
+            modal.appendChild(close)
+            let Stats = document.createElement("p")
+            Stats.innerHTML=Poke
+            modal.appendChild(Stats)
+
             fetch('https://pokeapi.co/api/v2/pokemon/' + Poke)
                 .then(result => result.json())
                 .then(data => {
@@ -144,6 +179,8 @@ async function DisplayInfo(ListePoke,max){
             div.appendChild(p)
             div.appendChild(img)
             div.appendChild(p2)
+            div.appendChild(btnInfos)
+            div.appendChild(modal)
             stock_equipe_random.appendChild(div)
             // mets tous les childs dans le html
 
@@ -183,4 +220,53 @@ async function DisplayInfo(ListePoke,max){
             }
         })
     });
+
+    let btn1 = document.getElementById("0")
+    let btn2 = document.getElementById("1")
+    let btn3 = document.getElementById("2")
+    let btn4 = document.getElementById("3")
+    let btn5 = document.getElementById("4")
+    let btn6 = document.getElementById("5")
+
+    let modalSelect1 = document.getElementById("x0")
+    let modalSelect2 = document.getElementById("x1")
+    let modalSelect3 = document.getElementById("x2")
+    let modalSelect4 = document.getElementById("x3")
+    let modalSelect5 = document.getElementById("x4")
+    let modalSelect6 = document.getElementById("x5")
+
+    let btnClose = document.querySelectorAll(".close-btn")
+    btn1.addEventListener("click",()=>{
+        modalSelect1.style.display="block"
+    })
+    btn2.addEventListener("click",()=>{
+        modalSelect2.style.display="block"
+    })
+    btn3.addEventListener("click",()=>{
+        modalSelect3.style.display="block"
+    })
+    btn4.addEventListener("click",()=>{
+        modalSelect4.style.display="block"
+    })
+    btn5.addEventListener("click",()=>{
+        modalSelect5.style.display="block"
+    })
+    btn6.addEventListener("click",()=>{
+        modalSelect6.style.display="block"
+    })
+
+
+    btnClose.forEach(element => {
+        element.addEventListener("click",()=>{
+            modalSelect1.style.display="none"
+            modalSelect2.style.display="none"
+            modalSelect3.style.display="none"
+            modalSelect4.style.display="none"
+            modalSelect5.style.display="none"
+            modalSelect6.style.display="none"
+        })
+    });
+    
+
+    
 }
