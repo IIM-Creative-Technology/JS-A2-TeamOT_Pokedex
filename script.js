@@ -2,6 +2,7 @@ let pokeContain = document.getElementById('pokemon-container')
 let a = 0
 let pokemonList = []
 let currentPokemonId 
+let imageFix = document.getElementsByClassName('image-poke')
 
 
 
@@ -30,15 +31,15 @@ function dragOver(event) {
 }
 
 function drop(event) {
-    a++
     if(a > 6){
         alert('Maximum de pokémon atteint')
+        return
     }
+    a++
     event.preventDefault();
     const id = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(id));
     pokemonList.push(currentPokemonId)
-    console.log(a)
     console.log(pokemonList)
 }
 
@@ -61,7 +62,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         .then((data2) => {
             var pokemon = data2
             pokemonImage = document.createElement('img')
-            pokemonImage.classList.add('image-poke') 
+            pokemonImage.classList.add('image-poke')
             pokemonImage.src = pokemon.sprites.front_default
             pokemonDiv.appendChild(pokemonImage)
         }))
@@ -77,9 +78,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
     target.addEventListener("dragenter", dragEnter);
     target.addEventListener("dragover", dragOver);
-    if (a < 6) {
-        target.addEventListener("drop", drop);
-    }
+    target.addEventListener("drop", drop);
     
 
 })
