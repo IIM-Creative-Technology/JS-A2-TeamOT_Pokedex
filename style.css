@@ -1,6 +1,6 @@
 #target-div{
     border: solid black 1px;
-    height: 600px;
+    height: 80vh;
     width: 600px;
     display: flex;
     flex-wrap: wrap;
@@ -20,6 +20,8 @@
     flex-wrap: wrap;
     max-width: 40%;
     gap: 30px;
+    overflow-y: auto;
+    height: 80vh;
 }
 
 .source-div{

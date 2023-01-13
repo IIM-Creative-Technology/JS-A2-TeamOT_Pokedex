@@ -41,7 +41,7 @@ function drop(event) {
     console.log(pokemonList)
 }
 
-fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
+fetch('https://pokeapi.co/api/v2/pokemon?limit=1200')
 .then((response) => response.json())
 .then((data) => { 
     const target = document.getElementById('target-div')
