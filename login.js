@@ -1,41 +1,26 @@
-const signupForm = document.getElementById("signup-form");
-const loginForm = document.getElementById("login-form");
+    let users = {};
+    if(localStorage.getItem("users")){
+    users = JSON.parse(localStorage.getItem("users"));
+    }
 
-signupForm.addEventListener("submit", event => {
-event.preventDefault();
-
-  // Get the form data
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-  // Save the form data to local storage
-localStorage.setItem("email", email);
-localStorage.setItem("password", password);
-
-  // check if data is saved or not
-const savedEmail = localStorage.getItem("email");
-const savedPassword = localStorage.getItem("password");
-
-if (savedEmail && savedPassword) {
+    const signupForm = document.getElementById("signup-form");
+    signupForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    users[email] = password;
+    localStorage.setItem("users", JSON.stringify(users));
     console.log("Sign up successful!");
-}
-});
+    });
 
-loginForm.addEventListener("submit", event => {
-event.preventDefault();
-
-  // Get the form data
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-  // Get the data from local storage
-const savedEmail = localStorage.getItem("email");
-const savedPassword = localStorage.getItem("password");
-
-  // Check if the email and password match
-if (email === savedEmail && password === savedPassword) {
-    console.log("Logged in successfully!");
-} else {
-    console.log("Invalid email or password!");
-}
-});
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    if(users[email] === password){
+        alert('You are logged in')
+    } else {
+        alert('Invalid email or password !')
+    }
+    });
