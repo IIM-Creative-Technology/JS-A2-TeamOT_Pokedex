@@ -4,30 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'orangePal': 'rgba(255,183,131,1)',
+                        'orangePalHover': 'rgba(199,131,83,1)',
+                        'purplePal': 'rgba(209,105,255,1)',
+                        'purplePalHover': 'rgba(151,77,184,1)'
+                    }
+                }
+            }
+        }
+    </script>
     <script src="login.js" defer></script>
-    <link rel="stylesheet" href="styles/login.css">
-    <title>Document</title>
+    <title>Se connecter / S'inscrire</title>
 </head>
-<body>
-    <form id="signup-form">
-        <label for="username">Username: </label>
-        <input type="text" id="username" name="username">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <button type="submit">Sign Up</button>
-    </form>
+<body class="bg-gradient-to-r from-orangePal to-purplePal flex items-center justify-evenly min-h-[100vh]">
+    <div class="bg-white w-[40vw] h-[70vh] flex flex-col items-center py-14 px-8 rounded-lg justify-between">
+        <h2 class="text-3xl font-bold">S'inscrire</h2>
+        <form class="h-[80%] flex flex-col items-center justify-between gap-6 w-full" id="signup-form">
+            <div class="w-[80%] flex flex-col items-center justify-between gap-6">
+                <div class="flex flex-col items-start w-full">
+                    <label class="font-semibold" for="username">Pseudo</label>
+                    <input  class="px-2 border-[2px] h-10 rounded border-black focus:border-purplePal focus:border-2 outline-none w-full" type="text" id="username" name="username">
+                </div>
 
+                <div class="flex flex-col items-start w-full">
+                    <label class="font-semibold" for="email">Adresse email</label>
+                    <input class="px-2 border-[2px] h-10 rounded border-black focus:border-purplePal focus:border-2 outline-none w-full" type="email" id="email" name="email">
+                </div>
 
-    <form id="login-form">
-    <label>Email:</label>
-    <input type="email" id="email2">
-    <label>Password:</label>
-    <input type="password" id="password2">
-    <button type="submit">Log In</button>
-    </form>
+                <div class="flex flex-col items-start w-full">
+                    <label class="font-semibold" for="password">Mot de pase</label>
+                    <input class="px-2 border-[2px] h-10 rounded border-black focus:border-purplePal focus:border-2 outline-none w-full" type="password" id="password" name="password">
+                </div>
+            </div>
+
+            <button class="bg-purplePal px-20 py-3 text-xl font-bold text-white rounded hover:bg-purplePalHover" type="submit">S'inscrire</button>
+        </form>
+    </div>
+
+    <div class="bg-white w-[40vw] h-[70vh] flex flex-col items-center py-14 px-8 rounded-lg justify-between">
+        <h2 class="text-3xl font-bold">Se connecter</h2>
+        <form class="h-[70%] flex flex-col items-center justify-between gap-6 w-full" id="login-form">
+            <div class="w-[80%] flex flex-col items-center justify-between gap-6">
+                <div class="flex flex-col items-start w-full">
+                    <label class="font-semibold">Adresse email</label>
+                    <input class="px-2 border-[2px] h-10 rounded border-black focus:border-orangePal focus:border-2 outline-none w-full" type="email" id="email2">
+                </div>
+
+                <div class="flex flex-col items-start w-full">
+                    <label class="font-semibold">Mot de passe</label>
+                    <input class="px-2 border-[2px] h-10 rounded border-black focus:border-orangePal focus:border-2 outline-none w-full" type="password" id="password2">
+                </div>
+            </div>
+            
+            <button class="bg-orangePal px-20 py-3 text-xl font-bold text-white rounded hover:bg-orangePalHover" type="submit">Se connecter</button>
+        </form>
+    </div>
 </body>
 </html>
