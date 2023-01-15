@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,14 +10,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles/styles.css" />
-    <title>Document</title>
+    <title>PokéBatlle</title>
 </head>
 <body>
     <header>
         <nav>
             <h1 id="logo">Pokébattle</h1>
             <form id="search-form">
-                <input type="text" id="search-input" />
+                <input type="text" id="search-input" class="text-black"/>
                 <button type="submit">Search</button>
             </form>
             <ul>
@@ -26,9 +26,9 @@
             </ul>
         </nav>
     </header>
-    <form  class="flex justify-start gap-4 py-8 items-center" id="team-name-form">
+    <form  class="flex justify-start gap-4 py-8 items-center justify-center" id="team-name-form">
         <label for="team-name-input" class="text-[red] font-bold text-lg">Saisie le nom de ton équipe </label>
-        <input type="text" name="team-name" class="border-[red] border-[2px] rounded" id="team-name-input">
+        <input type="text" name="team-name" class="border-[red] border-[2px] rounded text-black" id="team-name-input">
         <input type="submit" class="rounded bg-[red] px-8 py-2 text-white font-bold" id="team-name-submit">
     </form>
 
@@ -36,10 +36,12 @@
     <main>
         <!-- FORM POUR RECHERCHER DES POKEMON -->
 
-        <div id="result-container"></div>
+        <div id="result-container" class="font-bold flex flex-col justify-center">
+
+        </div>
 
         <!-- CARDS DES POKEMON GÉNÉRÉS  -->
-        <canvas id="canvas" class="confetti"></canvas>
+        <canvas id="canvas" class="confetti w-full"></canvas>
 
 
         <section id="cards">
@@ -57,7 +59,7 @@
         </div>
 
         <div>
-            <div id="my-team" class="w-full flex justify-center py-4 text-[red] font-bold text-2xl">
+            <div id="my-team" class="flex justify-center py-4 text-[red] font-bold text-2xl">
 
             </div>
             <div id="target-div" class="target-div">
@@ -104,7 +106,12 @@
         <button id="validation" class="px-[5rem] py-4 bg-[red] rounded mx-auto my-20 text-white text-4xl hover:cursor-pointer">Valider</button>
     </div>
 
-    <h1 id="text-result"></h1>
+    <div class="flex flex-row mb-8">
+        <h1 id="text-result" class="font-bold text-2xl text-center m-auto">
+
+        </h1>
+    </div>
+    
     
 </body>
 </html>

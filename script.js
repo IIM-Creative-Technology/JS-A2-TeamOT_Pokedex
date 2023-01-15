@@ -122,9 +122,9 @@ function scoreCalcul($myTeam, $autoTeam) {
     }
 
     if ($myTeam.score > $autoTeam.score) {
-        document.getElementById('text-result').innerHTML = 'Tu as gagné' + $myTeam.score + 'à' + $autoTeam.score
+        document.getElementById('text-result').innerHTML = 'Tu as gagné ' + $myTeam.score + ' à ' + $autoTeam.score
     } else {
-        document.getElementById('text-result').innerHTML = 'Tu as perdu' + $myTeam.score + 'à' + $autoTeam.score
+        document.getElementById('text-result').innerHTML = 'Tu as perdu ' + $myTeam.score + ' à ' + $autoTeam.score
     }
 }
 // =====================================================================================================================
@@ -254,9 +254,9 @@ searchForm.addEventListener("submit", (event) => {
         .then((response) => response.json())
         .then((data) => {
             resultContainer.innerHTML = `
-                <p>Name: ${data.name}</p>
-                <p>ID: ${data.id}</p>
-                <img src="${data.sprites.front_default}">
+                <p class="m-auto">Name: ${data.name}</p>
+                <p class="m-auto">ID: ${data.id}</p>
+                <img src="${data.sprites.front_default}" class="m-auto">
             `;
         })
         .catch((error) => {
