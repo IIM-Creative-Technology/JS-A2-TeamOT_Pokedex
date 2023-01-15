@@ -801,3 +801,18 @@ selectElem.addEventListener('change', function() {
   })
 
 // Fin partie Armand
+
+
+
+// Début affichage pseudo Adam
+
+let userName = localStorage.getItem("currentUser")
+let userNameObject = JSON.parse(userName)
+let userSlot = document.querySelector('.currentName')
+console.log(userName[2])
+if(userName != null){
+    userSlot.innerHTML = userNameObject.username
+}
+
+
+// Fin affichage pseudo Adam
