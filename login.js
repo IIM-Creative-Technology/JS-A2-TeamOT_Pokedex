@@ -31,7 +31,7 @@
             localStorage.setItem("currentUser", JSON.stringify(users[i]))
             window.location = "index.html"
         }else{
-            i++
+            console.log('nope')
         }
     }
 });
